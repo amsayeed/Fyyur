@@ -1,0 +1,26 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur | Venues{% endblock %}
+{% block content %}
+{% for area in areas %}
+<h3>{{ area.city }}, {{ area.state }}</h3>
+<ul class="items">
+    {% for venue in venues %}
+        {% if area.city == venue.city and area.state == venue.state %}
+        <li>
+        <a href="/venues/{{ venue.id }}">
+        <i class="fas fa-music"></i>
+        <div class="item">
+        <h5>{{ venue.name }}</h5>
+        {% for shows in num_upcoming_shows %}
+            {% if shows.venue_id == venue.id %}
+                <p>Upcomming Show : {{ shows.count }}</p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endfor %}
+    </div>
+    </a>
+    </li>
+</ul>
+{% endfor %}
+{% endblock %}

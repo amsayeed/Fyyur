@@ -1,0 +1,19 @@
+
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur | Shows Search{% endblock %}
+{% block content %}
+<h3>Number of search results for "{{ search_term }}": {{ results|length}}</h3>
+ <div class="row shows">
+    {%for show in results %}
+    <div class="col-sm-4">
+        <div class="tile tile-show">
+            <img src="{{ show.artists.image_link }}" alt="Artist Image" />
+            <h4>{{ show.start_time|datetime('full') }}</h4>
+            <h5><a href="/artists/{{ show.artists.id }}">{{ show.artists.name }}</a></h5>
+            <p>playing at</p>
+            <h5><a href="/venues/{{ show.venues.id }}">{{ show.venues.name }}</a></h5>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

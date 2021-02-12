@@ -1,0 +1,22 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur | Venues Search{% endblock %}
+{% block content %}
+<h3>Number of search results for "{{ search_term }}": {{ results|length}}</h3>
+<ul class="items">
+	{% for venue in results %}
+	<li>
+		<a href="/venues/{{ venue.id }}">
+			<i class="fas fa-music"></i>
+			<div class="item">
+				<h5>{{ venue.name }}</h5>
+                {% for shows in num_upcoming_shows %}
+                    {% if shows.venue_id == venue.id %}
+                        <p>Upcomming Show : {{ shows.count }}</p>
+                    {% endif %}
+                {% endfor %}
+			</div>
+		</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
